@@ -71,7 +71,36 @@
 <script type="text/javascript">
 
 
+  $.get("/api/tables", function(tableData){
 
+    tableData.forEach(item => {
+      $("#tableList").append(
+        $("<li>").append(
+          $("<h5>").text("Mesa a nombre de: " + item.name),
+          $("<br>"),
+          $("<p>").text("Número: " + item.phone),
+          $("<br>"),
+          $("<p>").text("Correo: " + item.mail)
+        )
+      )
+    })
+
+  });
+
+  $.get("/api/waitlist", function(waitlistData){
+    
+    waitlistData.forEach(item => {
+      $("#waitList").append(
+        $("<li>").append(
+          $("<h5>").text("Mesa a nombre de: " + item.name),
+          $("<br>"),
+          $("<p>").text("Número: " + item.phone),
+          $("<br>"),
+          $("<p>").text("Correo: " + item.mail)
+        )
+      )
+    })
+  });
 
 </script>
 

@@ -56,7 +56,7 @@
                 <label for="reserve-email">Email</label>
                 <input type="text" class="form-control" id="reserve-email">
               </div>
-              <button type="submit" class="btn btn-primary submit">Reservar</button>
+              <button type="submit" class="btn btn-primary submit" id="add-btn">Reservar</button>
             </form>
           </div>
         </div>
@@ -80,6 +80,25 @@
 
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS SENT TO OUR SERVER -->
 <script type="text/javascript">
+    $("#add-btn").on("click", function(event) {
+      event.preventDefault();
+      var newTable = {
+        name: $("#reserve-name").val().trim(),
+        phone: $("#reserve-phone").val().trim(),
+        mail: $("#reserve-email").val().trim()
+      };
 
+      // Question: What does this code do??
+      $.post("/api/tables", newTable)
+        .then(function(data) {
+          console.log("add.html", data);
+          if(data){
+            alert("Adding table to reservations...");
+          }else{
+            alert("Adding table to waitlist...");
+          }
+          
+        });
+    });
 
 </script>
