@@ -70,6 +70,13 @@
 <!-- BELOW CODE IS CRITICAL. IT HANDLES HOW FORM DATA IS LOADED FROM OUR SERVER -->
 <script type="text/javascript">
 
+  $("#clear").on("click", function(e){
+    e.preventDefault()
+    $.post("/api/erase").then(function(data){
+      $("#tableList").empty()
+      $("#waitList").empty()
+    })
+  });
 
   $.get("/api/tables", function(tableData){
 
